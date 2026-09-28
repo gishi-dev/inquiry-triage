@@ -73,7 +73,7 @@ def run_triage(store: Store) -> None:
 def sidebar(store: Store, rows: list[dict]) -> None:
     with st.sidebar:
         st.title("問い合わせ仕分け")
-        st.caption("架空の家電メーカー「ソヨカ電機」のサポート窓口に届いたメールで動くデモです。")
+        st.caption("架空の家電メーカー「ギシ電機」のサポート窓口に届いたメールで動くデモです。")
         if st.button("受信箱を取り込む", width="stretch"):
             added = store.import_mails(read_inbox(INBOX_DIR))
             st.toast(f"{added}通を取り込みました。" if added else "新しいメールはありません。")
@@ -235,7 +235,7 @@ def main() -> None:
     rows = store.all()
     sidebar(store, rows)
 
-    st.header("ソヨカ電機 サポート窓口 受信箱")
+    st.header("ギシ電機 サポート窓口 受信箱")
     triaged = [r for r in rows if r["triage"]]
     a, b, c, d = st.columns(4)
     a.metric("要対応", sum(r["status"] == "open" for r in rows))
